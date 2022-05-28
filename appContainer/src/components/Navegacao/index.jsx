@@ -1,16 +1,23 @@
 import React, { Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
+
+const ListarClientesApp = React.lazy(() => import('listar/ListarClientesApp'));
+const CadastrarClienteApp = React.lazy(() => import('cadastrar/CadastrarClienteApp'));
 
 export function Navegacao(){
+    const navegacao = useNavigate();
+
     return(
         <Routes>
             <Route path="/" element={
                 <Suspense fallback={<div>Carregando...</div>}>
-                    <h2>Listar</h2>
+                    <ListarClientesApp />
                 </Suspense>
             }/>
             <Route path="/cadastrar" element={
-                    <h2>Cadastrar</h2>
+                <Suspense fallback={<div>Carregando...</div>}>
+                    <CadastrarClienteApp navegar={navegacao}/>
+                </Suspense>
             }/>
         </Routes>
     );

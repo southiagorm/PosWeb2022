@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {ModuleFederationPlugin} = require('webpack').container;
 
 module.exports = {
     mode: 'development',
@@ -21,6 +22,23 @@ module.exports = {
         extensions: ['.js', '.jsx'],
     },
     plugins: [
+        new ModuleFederationPlugin({
+            name: 'container',
+            remotes: {
+                listar: 'listar@http://localhost:9001/remoteEntry.js',
+                cadastrar: 'cadastrar@http://localhost:9002/remoteEntry.js',
+            },
+            shared: {
+                react: {
+                    singleton: true,
+                    requiredVersion: "^18.1.0"
+                },
+                "react-dom":{
+                    singleton: true,
+                    requiredVersion: "^18.1.0"
+                }
+            }
+        }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public', 'index.html'),
         }),

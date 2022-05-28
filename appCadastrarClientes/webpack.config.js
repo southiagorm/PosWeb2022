@@ -27,6 +27,16 @@ module.exports = {
             filename: 'remoteEntry.js',
             exposes: {
                 "./CadastrarClienteApp" : path.resolve(__dirname, 'src', 'components', 'CadastrarCliente'),
+            },
+            shared: {
+                react: {
+                    singleton: true,
+                    requiredVersion: "^18.1.0"
+                },
+                "react-dom":{
+                    singleton: true,
+                    requiredVersion: "^18.1.0"
+                }
             }
         }),
         new HtmlWebpackPlugin({

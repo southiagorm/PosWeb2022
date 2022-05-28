@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { api } from "../../services/api";
 
-export default function CadastrarCliente(){
-
-    const navegacao = useNavigate();
+export default function CadastrarCliente(props){
 
     const [nome, setNome] = useState('');
     const [peso, setPeso] = useState(0.0);
@@ -25,7 +23,7 @@ export default function CadastrarCliente(){
 
         cadastrar(cliente);
 
-        navegacao("/");
+        props.navegar("/");
     }
 
     async function cadastrar(cliente){
