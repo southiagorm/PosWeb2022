@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "reactstrap";
+import { Table, Button } from "reactstrap";
 import { api } from "../../services/api";
 
-export default function ListarClientes(){
+export default function ListarClientes(props){
 
     const [clientes, setClientes] = useState([]);
 
@@ -15,6 +15,8 @@ export default function ListarClientes(){
         setClientes(response.data);
     }
 
+    const buscar = (id) => props.navegar(`/buscar/${id}`);
+
     return(
         <Table striped bordered>
             <thead>
@@ -25,6 +27,7 @@ export default function ListarClientes(){
                     <th scope="col">Altura</th>
                     <th scope="col">Sexo</th>
                     <th scope="col">IMC</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +40,7 @@ export default function ListarClientes(){
                             <td>{cliente.altura}</td>
                             <td>{cliente.sexo}</td>
                             <td>{cliente.imc.toFixed(2)}</td>
+                            <td><Button size="sm" onClick={() => buscar(cliente.id)}>Visualizar</Button></td>
                         </tr>
                     );
                 })}
