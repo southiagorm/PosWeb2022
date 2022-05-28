@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { api } from "../../services/api";
 
-export function CadastrarCliente(){
+export default function CadastrarCliente(){
 
     const navegacao = useNavigate();
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { api } from "../../services/api";
 
-export function ListarClientes(){
+export default function ListarClientes(){
 
     const [clientes, setClientes] = useState([]);
 
@@ -12,7 +12,7 @@ export function ListarClientes(){
 
     async function getData(){
         const response = await api.get('/clientes');
-        setClientes(response.data.clientes);
+        setClientes(response.data);
     }
 
     return(
