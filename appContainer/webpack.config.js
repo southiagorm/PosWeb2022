@@ -15,7 +15,7 @@ module.exports = {
         static: {
             directory: path.resolve(__dirname, 'public'),
         },
-        port: 9000, 
+        port: 9000,
         historyApiFallback: true
     },
     resolve: {
@@ -27,6 +27,7 @@ module.exports = {
             remotes: {
                 listar: 'listar@http://localhost:9001/remoteEntry.js',
                 cadastrar: 'cadastrar@http://localhost:9002/remoteEntry.js',
+                buscar: 'buscar@http://localhost:9003/remoteEntry.js',
             },
             shared: {
                 react: {
